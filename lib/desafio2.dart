@@ -23,9 +23,19 @@ class Lista extends StatefulWidget {
 class _ListaState extends State<Lista> {
   @override
   Widget build(BuildContext context) {
+    final controller = ScrollController();
     return Scaffold(
       appBar: AppBar(),
-      body: const WidgetExpansive(),
+      body: ListView(
+        controller: controller,
+        children: List.generate(
+          50,
+          (index) => WidgetExpansive(
+            index: index,
+            controller: controller,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -34,7 +44,10 @@ class _ListaState extends State<Lista> {
 // column [image, text]
 
 class WidgetExpansive extends StatefulWidget {
-  const WidgetExpansive({super.key});
+  const WidgetExpansive(
+      {super.key, required this.index, required this.controller});
+  final int index;
+  final ScrollController controller;
 
   @override
   State<WidgetExpansive> createState() => _WidgetExpansiveState();
@@ -53,7 +66,9 @@ class _WidgetExpansiveState extends State<WidgetExpansive> {
               isExpanded = !isExpanded;
             });
           },
-          title: const Text("Titulo"),
+          textColor: isExpanded ? Colors.blue : Colors.black,
+          iconColor: isExpanded ? Colors.blue : Colors.black,
+          title: Text("Titulo ${widget.index}"),
           trailing: AnimatedRotation(
             turns: isExpanded ? 0 : 0.5,
             duration: const Duration(milliseconds: 250),
@@ -65,8 +80,9 @@ class _WidgetExpansiveState extends State<WidgetExpansive> {
           child: AnimatedAlign(
             alignment:
                 isExpanded ? Alignment.topCenter : Alignment.bottomCenter,
-            duration: const Duration(seconds: 1),
+            duration: const Duration(milliseconds: 250),
             heightFactor: isExpanded ? 1 : 0,
+            curve: Curves.linear,
             child: Container(
               color: Colors.grey[100],
               child: Column(
