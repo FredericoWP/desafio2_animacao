@@ -46,6 +46,22 @@ class _ListExpansiveState extends State<ListExpansive> {
 
   void _onTap(int index) {
     setState(() {
+      var teste = controller.position.saveOffset();
+      // controller = ScrollController(initialScrollOffset: controller.offset);
+      print("index: $index");
+      print("offset: ${controller.offset}");
+      print("minScrollExtent: ${controller.position.minScrollExtent}");
+      print("maxScrollExtent: ${controller.position.maxScrollExtent}");
+      print("extentAfter: ${controller.position.extentAfter}");
+      print("extentBefore: ${controller.position.extentBefore}");
+      print("extentInside: ${controller.position.extentInside}");
+      print("===============================================================");
+      // controller.animateTo(
+      //     controller.offset +
+      //         (controller.position.extentInside -
+      //             controller.position.extentBefore),
+      //     duration: const Duration(seconds: 1),
+      //     curve: Curves.linear);
       indexSelected = index == indexSelected ? -1 : index;
     });
   }
