@@ -31,6 +31,7 @@ class _ListExpansiveState extends State<ListExpansive> {
         title: const Text("ListExpansive"),
       ),
       body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         children: List.generate(
           50,
           (index) => CardWidgetExpansive(

@@ -1,4 +1,4 @@
-import 'package:animation/expansion_tile/class.dart';
+import 'package:animation/src/class.dart';
 import 'package:flutter/material.dart';
 
 class CardWidgetExpansive extends StatelessWidget {
